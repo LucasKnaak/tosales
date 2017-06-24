@@ -1,0 +1,87 @@
+<h1></h1>
+<div id="main" class="container-fluid">
+  
+ <div class="panel panel-primary">
+  <div class="panel-heading"><h3 class="page-header">Consulta Produtos</h3></div>
+</div> 
+   
+  <div class="row">
+  	<div class="form-group col-xs-2">
+   		<form action="/cliente-listar" method="post">
+		<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar</button>
+		</form>
+	</div>
+	
+	<div class="form-group col-xs-2">
+	 	<form action="/cliente_cadastro" method="post">
+		<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo Produto</button>
+		</form>
+	</div>		
+  </div>
+        
+    <hr />
+  	<form action="/cliente-filtrar" method="post">
+	<div class="row">
+	
+		<div class="form-group col-md-2">
+        	    <select class="form-control" name="tabela">
+                	<option value="id">Cod. ID</option>
+                	<option value="nome">Nome</option>
+            	</select>
+        </div>	
+						
+    	<div class="col-md-3">    
+		  <div class="input-group">
+			<input id="filtro" name="filtro" type="text" class="form-control" placeholder="...">
+		  </div>
+		</div>
+		
+		<div class="col-md-7">
+  			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filtrar</button>
+		</div> 
+	</form>
+	</div>
+	
+       
+</div>	        
+<hr>
+<div class="panel panel-primary">
+  <div class="panel-heading"></div>
+<table class="table">
+
+  <thead>
+     <tr>
+    		<th>ID</td>
+    		<th>Nome</td>
+    		<th>Quantidade</td>
+    		<th>Valor</td>
+    		
+    </tr>
+ 
+     </thead>
+  #foreach( $produto in $produtos )
+    <tr>
+    		<td>$produto.id</td>
+    		<td>$produto.nome</td>
+    		<td>$produto.quantidade</td>
+    		<td>$produto.valor</td>
+    		<td><form action="/cliente-listar" method="post">
+  				<button type="submit" class="label label-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button></td>
+  			<td><form action="/cliente-listar" method="post">
+  				<button type="submit" class="label label-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Or&ccedil;ar</button></td>
+  			<td><form action="/cliente-listar" method="post">
+  				<button type="submit" class="label label-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Excluir</button></td>
+    </tr>
+  #end
+   
+</table>
+</div>
+<script>
+$(document).ready(function() {
+    $('#productForm')
+       /* Combobox */
+        .find('[name="tabela"]')
+            .combobox()
+            .end()
+});
+</script>
