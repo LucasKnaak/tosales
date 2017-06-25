@@ -57,6 +57,11 @@ public class Main {
 	String cadastro() {
 		return "cadastro";
 	}
+	
+	@RequestMapping("/produto")
+	String produto() {
+		return "protuto";
+	}
 
 	@RequestMapping("/db")
 	String db(Map<String, Object> model) {
